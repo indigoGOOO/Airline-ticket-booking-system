@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    h1 {
+      color: #ffffff;
+      text-align: center;
+      background-color: rgb(20, 40, 79);
+      padding: 10px;
+      margin: 0;
+    }
+    .container {
+      background-color: rgb(20, 40, 79);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container img {
+      width: 60px;
+      height: 60px;
+      background-size: contain;
+    }
+
+    .body {
+      background-color: rgb(20, 40, 79);
+      background-repeat: no-repeat;
+      height: 90%;
+      background-size: 100%;
+      
+      filter: alpha(opacity=80);
+      padding-bottom: 5px;
+      border-top: 2px solid rgb(20, 40, 79);
+      border-bottom: 2px solid rgb(20, 40, 79);
+      margin-bottom: 10px;
+      
+    }
+
+    .navbar {
+      overflow: hidden;
+      width: 100%;
+      float: right;
+      background-color: rgb(34, 58, 106);
+    }
+
+    .navbar a {
+      float: right;
+      display: inside;
+      color: white;
+      text-align: center;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: bolder;
+      font-size: 18px;
+    }
+
+    .navbar a:hover {
+      background-color: white;
+      color: rgb(20, 40, 79);
+    }
+
+    .content {
+      padding-top: 5px;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .side,
+    .main {
+      width: 45%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .side {
+      float: left;
+      margin-left: 5%; /* Adjusted margin to reduce the gap */
+    }
+
+    .main {
+      float: right;
+      margin-right: 5%; /* Adjusted margin to reduce the gap */
+    }
+
+    .cont1 {
+      background-color: rgb(98, 127, 184);
+      border-radius: 40px 0px 0px 40px;
+      height: 450px;
+      margin: 20px 0;
+      padding: 30px 20px 30px 60px;
+      font-size: 18px;
+      font-weight: bolder;
+      color: white;
+    }
+    .cont2 {
+      background-color: rgb(98, 127, 184);
+      border-radius: 0px 40px 40px 0px;
+      height: 450px;
+      margin: 20px 20px 20px 0;
+      padding: 30px 20px 30px 60px;
+      font-size: 18px;
+      font-weight: bolder;
+      color: white;
+    }
+
+    .zi1 {
+      color: white;
+      font-size: 24px;
+      font-weight: bolder;
+      margin-top: 20px;
+    }
+
+    .button1 {
+      background-color: rgb(204, 223, 238);
+      border: none;
+      color: rgb(0, 0, 0);
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+      margin-top: 20px;
+      font-weight: bold;
+      display: box;
+      border-radius: 5px;
+    }
+
+    .button1:hover {
+      background-color: rgb(185, 188, 253);
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      border: 2px solid rgb(255, 255, 255);
+      border-radius: 10px 10px 10px 10px;
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+      margin: 5px 0;
+      box-sizing: border-box;
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px 10px 10px 10px;
+      border-color: #66afe9;
+      outline: 0;
+      color: black;
+      height: 50px;
+      text-align: center;
+      width: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Skyexpert</h1>
+  <div class="container">
+    <img src="static/image/icon.png" alt="Icon">
+  </div>
+  <div class="body">
+    <div class="navbar">
+      {% if not loggedin %}
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+      {% endif %}
+      {% if loggedin %}
+      <a href="/logout">Log out</a>
+      {% if usertype == 'staff' %}
+      <a href="/staff_home">Home</a> <br>
+      {% elif usertype == 'customer' %}
+      <a href="/customer_home">Home</a> <br>
+      {% endif %}
+      <br>
+      {% endif %}
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="side">
+          <div class="cont1">
+            <p class="zi1">Search for flights</p>
+            <form action="/searchPublic" method="POST">
+              From &nbsp;&nbsp;<input type="text" name="source" placeholder="Source" required/> <br>
+              To    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="destination" placeholder="Destination" required/> <br><br>
+              <div id="radio-one-div">
+                <input type="radio" id="radio-one" name="triptype" value="one-way" />
+                <label for="radio-one">One-way</label>
+                <input type="radio" id="radio-round" name="triptype" value="round" checked/>
+                <label for="radio-round">Round trip</label><br><br>
+              </div>
+              <div id='departure-date-div'>
+                Departure Date&nbsp;&nbsp;&nbsp;<input type="date" name="departure-date" placeholder="YYYY/DD/MM" required/> <br>
+              </div>
+              <div id='return-date-div' >         
+                Return Date  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="return-date" type="date" name="return-date" placeholder="YYYY/DD/MM" required/> <br>
+              </div>
+              <input class="button1" type="submit" value="Search" />
+            </form>
+          </div>
+        </div>
+        <div class="main">
+          <div class="cont2">
+            <p class="zi1">Check Flight Status</p>
+            <form action="/checkIndex" method="POST">
+              Company&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="airline_name" placeholder="Airline Name" required/> <br>
+              Flight NO.&nbsp;&nbsp;&nbsp;<input type="text" name="flight_number" placeholder="Flight Number" required/> <br><br>
+              <div style="display: flex; align-items: center;">
+                <input type="radio" id="radio-one" name="datetype" value="departure_date" checked/>
+                <label for="radio-one" style="margin-left: 10px;">Departure Date</label> &nbsp;&nbsp;&nbsp;
+                <input type="radio" id="radio-two" name="datetype" value="arrival_date" />
+                <label for="radio-two" style="margin-left: 10px;">Arrival Date</label>  <br><br>
+              </div>
+              <input style="margin-top: 10px;text-align: center;" type="date" name="date" placeholder="YYYY/MM/DD" required/> <br><br>
+              <input class="button1"  type="submit" value="Check" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  document.getElementById("radio-one-div").addEventListener("click", function () {
+    if (document.getElementById('radio-one').checked) {
+      document.getElementById('return-date-div').style.display = "none";
+      document.getElementById('return-date').removeAttribute("required");
+    } else if (document.getElementById('radio-round').checked) {
+      document.getElementById('return-date-div').style.display = "block";
+      document.getElementById('return-date').setAttribute("required", "");
+    }
+  });
+</script>
+
+</html>

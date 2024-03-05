@@ -1,0 +1,86 @@
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <title>Air Ticket Online</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      background-color: rgb(20, 40, 79); /* 深蓝色背景 */
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+      align-items: center;
+    }
+    .kuang{
+      text-align: center;
+      width: 350px;
+      height: 250px;
+      padding: 20px 80px;
+      background-color: rgb(98, 127, 184);
+      border-radius: 10px;
+      font-size: 20px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-weight: bolder;
+      color: white;
+            }
+            .button1{
+              background-color: rgb(34, 58, 106);
+                border: none;
+                color: white;
+                padding: 10px;
+                text-align: center;
+
+                font-weight: bolder;
+                font-size: 18px;
+                margin-top: 10px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                cursor: pointer; /* 添加鼠标指针样式 */
+                border-radius: 5px;
+            }
+            .button1:hover{
+                background-color: white;
+                font-weight: bold;
+                color: rgb(34, 58, 106);
+                font-weight: bold;
+                border: 2px solid rgb(34, 58, 106);
+                border-radius: 5px;
+            }
+            input[type=email],input[type=password]{
+              margin: 5px 0;
+      box-sizing: border-box;
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px 10px 10px 10px;
+      border-color: #66afe9;
+      outline: 0;
+      color: black;
+      height: 50px;
+      text-align: center;
+      width: 60%;
+      }
+  </style>
+</head>
+
+<body>
+ 
+  <div class="kuang">
+    <form action="/loginCustomerAuth" method="POST">
+      <br>
+    Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="email" name = "username" placeholder="email" required/> <br><br>
+    Password &nbsp;&nbsp;
+    <input type="password" name = "password" placeholder="password" required/><br><br>
+  	<input class="button1" type="submit" value = Login />&nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="button1" href="/">Go back</a>
+  	{% if error %}
+  		<p class="error" style="margin-top: 60px;"><strong>Error:</strong> {{error}}</p>
+  	{% endif %}
+    </form>
+  </div>
+  
+</body>
+
+</html>

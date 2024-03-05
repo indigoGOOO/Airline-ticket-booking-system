@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Air Ticket Online</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      background-color: rgb(20, 40, 79); /* 深蓝色背景 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      
+    }
+
+    .kuang {
+      width: 300px;
+      height: 250px;
+      padding: 20px 80px;
+      background-color: rgb(98, 127, 184);
+      text-align: center; /* 文本居中 */
+      border-radius: 10px;
+    }
+
+    .z1 {
+      font-size: 25px;
+      font-weight: bolder;
+      color: white;
+    }
+
+    .button1 {
+      background-color: rgb(34, 58, 106);
+      border: none;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: bolder;
+      font-size: 20px;
+      margin-top: 10px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      cursor: pointer; /* 添加鼠标指针样式 */
+      border-radius: 5px;
+    }
+
+    .button1:hover {
+      background-color: white;
+      color: rgb(34, 58, 106);
+      font-weight: bold;
+      border: 2px solid rgb(34, 58, 106);
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="kuang">
+    <form action="/loginAuth" method="POST" style="padding-bottom: 30px;">
+      <p class="z1">I am a ...</p>
+      <input class="button1" type="submit" name="usertype" value = Staff />&nbsp;&nbsp;&nbsp;&nbsp;
+      <input class="button1" type="submit" name="usertype" value = Customer />
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{error}}</p>
+  	{% endif %}
+    </form>
+    <a class="button1" style="margin-top: 20px;" href="/">Back to main page</a><br>
+  </div>
+</body>
+
+</html>

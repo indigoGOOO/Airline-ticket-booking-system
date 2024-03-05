@@ -1,0 +1,140 @@
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <title>Air Ticket Online</title>
+  <style>
+    *{margin:0;padding:5px;}
+      html,body{
+          height:100%;
+          align-items: center;
+      }
+      .head{    
+            width:30%;
+      }
+      body {
+      margin: 0;
+      padding: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      background-color: rgb(20, 40, 79); /* 深蓝色背景 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  justify-content: center;
+      
+    }
+    .body{
+            background-color:  rgb(98, 127, 184);
+            
+            background-size: 100%;
+            padding-bottom:5px;
+	          border-top: 2px solid rgb(98, 127, 184);
+            border-bottom: 2px solid  rgb(98, 127, 184);
+            border-radius: 20px;
+            align-items: center;
+            
+      }
+      .cont2{
+        float: left;
+        width: 200px;
+        height:300px;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        padding: 20px 80px;
+      }
+      .cont1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+      .cont3{
+        margin-top: 300px;
+        padding-left: 500px;
+      }
+      
+      .button1{
+              background-color: rgb(34, 58, 106);
+      border: none;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: bolder;
+      font-size: 20px;
+      margin-top: 10px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      cursor: pointer; /* 添加鼠标指针样式 */
+      border-radius: 5px;
+            }
+            .button1:hover{
+              background-color: white;
+      color: rgb(34, 58, 106);
+      font-weight: bold;
+      border: 2px solid rgb(34, 58, 106);
+      border-radius: 5px;
+            }
+            
+  </style>
+</head>
+
+<body>
+  <div class="head">
+  </div>
+  <div class="body">
+    <div class="cont1">
+      <form action="/registerStaffAuth" method="POST">
+        <div class="cont2">
+          Username
+          <input type="text" name = "username" placeholder="username" required/> <br><br>
+          Password
+          <input type="password" name = "password" placeholder="password" required/><br><br>
+          First Name<br>
+          <input type="text" name = "first-name" placeholder="first name" required/> <br><br>
+          Last Name<br>
+          <input type="text" name = "last-name" placeholder="last name" required/> <br><br>
+        </div>
+        <div class="cont2">
+          
+          Airline
+        
+          <input type="text" name = "airline-name" placeholder="airline name" required/> <br><br>
+          Date of Birth<br>
+          <input type="date" name = "DOB" placeholder="YYYY/MM/DD" required/> <br>
+          Phone No.<br>
+          <div id="phone">
+            <input type="tel" name = "phone-number" placeholder="phone number" required/><br><br>
+          </div>
+          <button type="button" onclick="addPhone()">Add Phone number</button><br>
+        </div>
+        <div class="cont3">
+          <input class="button1"  type="submit" value = "Register" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a class="button1" href="/">Go back</a>
+          {% if error %}
+            <p class="error"><strong>Error:</strong> {{error}}</p>
+          {% endif %}
+        </div>
+      
+      </form>
+      
+    </div>
+  </div>
+
+  
+</body>
+
+<script>
+function addPhone(){
+  phoneDiv = document.getElementById("phone");
+  phoneInput = document.createElement("input");
+  br = document.createElement("br");
+  phoneInput.type="tel";
+  phoneInput.name="phone-number";
+  phoneInput.placeholder="phone number";
+  phoneDiv.appendChild(phoneInput);
+  phoneDiv.appendChild(br);
+}
+</script>
+
+</html>
